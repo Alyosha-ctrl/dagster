@@ -26,7 +26,6 @@ class MyCacheableAssetsDefinition(CacheableAssetsDefinition):
         return [my_asset]
 
 
-@pytest.mark.skip("Find a way to set up this test with new Tree system")
 class CustomComponent(Component):
     def build_defs(self, context: ComponentLoadContext) -> Definitions:
         return Definitions(
@@ -34,6 +33,7 @@ class CustomComponent(Component):
         )
 
 
+@pytest.mark.skip("Find a way to set up this test with new Tree system")
 def test_composite_yaml_component_code_references():
     with tempfile.TemporaryDirectory() as tmpdir, new_cwd(tmpdir):
         (Path(tmpdir) / "defs.yaml").touch()
