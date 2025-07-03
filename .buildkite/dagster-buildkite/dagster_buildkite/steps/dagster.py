@@ -128,7 +128,9 @@ def build_check_changelog_steps() -> List[BuildkiteStep]:
         "fields": [],
     }
 
-    changelog_branch_name = f"changelog-release-{release_number}"
+    import hashlib
+
+    changelog_branch_name = f"changelog-release-{release_number}-{hashlib.sha256(release_number.encode()).hexdigest()}"
 
     generate_changelog_step = (
         CommandStepBuilder(":memo: generate changelog")
