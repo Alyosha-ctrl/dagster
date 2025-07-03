@@ -134,14 +134,14 @@ def build_check_changelog_steps() -> List[BuildkiteStep]:
         CommandStepBuilder(":memo: generate changelog")
         .on_test_image(AvailablePythonVersion.get_default(), ["OPENAI_API_KEY"])
         .run(
-            # "npm install -g @openai/codex@native",
-            # f"python scripts/generate_changelog.py new-changelog {release_number}",
+            "npm install -g @openai/codex@native",
+            f"python scripts/generate_changelog.py new-changelog {release_number}",
             f"git checkout -b {changelog_branch_name}",
-            # "git add CHANGES.md",
-            # f"git commit -m 'Update changelog for release {release_number}'",
+            "git add CHANGES.md",
+            f"git commit -m 'Update changelog for release {release_number}'",
             "git config --global user.email 'devtools@elementl.com'",
             "git config --global user.name 'Dagster Bot'",
-            f"git push --set-upstream origin {changelog_branch_name}",
+            f"git push --force --set-upstream origin {changelog_branch_name}",
         )
         .build()
     )
