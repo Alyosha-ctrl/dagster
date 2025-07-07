@@ -1,5 +1,5 @@
 import React from 'react';
-import {FeatureFlag} from 'shared/app/FeatureFlags.oss';
+import { FeatureFlag } from 'shared/app/FeatureFlags.oss';
 
 type FeatureFlagRow = {key: string; flagType: FeatureFlag; label?: React.ReactNode};
 
@@ -30,9 +30,5 @@ export const useVisibleFeatureFlagRows = (): FeatureFlagRow[] => [
   {
     key: 'Docs in app (experimental)',
     flagType: FeatureFlag.flagDocsInApp,
-  },
-  {
-    key: 'Enable retries from asset failure',
-    flagType: FeatureFlag.flagAssetRetries,
   },
 ];

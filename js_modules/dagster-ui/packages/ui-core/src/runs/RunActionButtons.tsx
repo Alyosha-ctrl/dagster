@@ -1,23 +1,22 @@
-import {Box, Button, Group, Icon} from '@dagster-io/ui-components';
-import {useCallback, useState} from 'react';
+import { Box, Button, Group, Icon } from '@dagster-io/ui-components';
+import { useCallback, useState } from 'react';
 
-import {IRunMetadataDict, IStepState} from './RunMetadataProvider';
-import {doneStatuses, failedStatuses} from './RunStatuses';
-import {DagsterTag} from './RunTag';
-import {getReexecutionParamsForSelection} from './RunUtils';
-import {StepSelection} from './StepSelection';
-import {TerminationDialog, TerminationDialogResult} from './TerminationDialog';
-import {RunFragment, RunPageFragment} from './types/RunFragments.types';
-import {useJobAvailabilityErrorForRun} from './useJobAvailabilityErrorForRun';
-import {useJobReexecution} from './useJobReExecution';
-import {showSharedToaster} from '../app/DomUtils';
-import {useFeatureFlags} from '../app/Flags';
-import {GraphQueryItem, filterByQuery} from '../app/GraphQueryImpl';
-import {DEFAULT_DISABLED_REASON} from '../app/Permissions';
-import {ReexecutionStrategy} from '../graphql/types';
-import {LaunchButtonConfiguration, LaunchButtonDropdown} from '../launchpad/LaunchButton';
-import {filterRunSelectionByQuery} from '../run-selection/AntlrRunSelection';
-import {useRepositoryForRunWithParentSnapshot} from '../workspace/useRepositoryForRun';
+import { IRunMetadataDict, IStepState } from './RunMetadataProvider';
+import { doneStatuses, failedStatuses } from './RunStatuses';
+import { DagsterTag } from './RunTag';
+import { getReexecutionParamsForSelection } from './RunUtils';
+import { StepSelection } from './StepSelection';
+import { TerminationDialog, TerminationDialogResult } from './TerminationDialog';
+import { RunFragment, RunPageFragment } from './types/RunFragments.types';
+import { useJobAvailabilityErrorForRun } from './useJobAvailabilityErrorForRun';
+import { useJobReexecution } from './useJobReExecution';
+import { showSharedToaster } from '../app/DomUtils';
+import { GraphQueryItem, filterByQuery } from '../app/GraphQueryImpl';
+import { DEFAULT_DISABLED_REASON } from '../app/Permissions';
+import { ReexecutionStrategy } from '../graphql/types';
+import { LaunchButtonConfiguration, LaunchButtonDropdown } from '../launchpad/LaunchButton';
+import { filterRunSelectionByQuery } from '../run-selection/AntlrRunSelection';
+import { useRepositoryForRunWithParentSnapshot } from '../workspace/useRepositoryForRun';
 
 interface RunActionButtonsProps {
   run: RunPageFragment;
@@ -109,7 +108,6 @@ export const RunActionButtons = (props: RunActionButtonsProps) => {
 
   const repoMatch = useRepositoryForRunWithParentSnapshot(run);
   const jobError = useJobAvailabilityErrorForRun(run);
-  const {flagAssetRetries} = useFeatureFlags();
 
   const artifactsPersisted = run?.executionPlan?.artifactsPersisted;
 
@@ -239,7 +237,7 @@ export const RunActionButtons = (props: RunActionButtonsProps) => {
     selected,
     fromSelected,
     fromFailure,
-    flagAssetRetries && run.executionPlan?.assetSelection.length ? fromAssetFailure : null,
+    run.executionPlan?.assetSelection.length ? fromAssetFailure : null,
   ].filter(Boolean) as LaunchButtonConfiguration[];
   const preferredRerun = selection.present
     ? selected
